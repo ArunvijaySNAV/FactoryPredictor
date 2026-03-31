@@ -1,7 +1,7 @@
 import { Router } from "express";
 import multer from "multer";
-import { importTelemetryCsv } from "../services/csvIngestionService";
-import { getTelemetryRows } from "../services/telemetryService";
+import { importTelemetryCsv } from "../services/csvIngestionService.js";
+import { getTelemetryRows } from "../services/telemetryService.js";
 
 const upload = multer();
 

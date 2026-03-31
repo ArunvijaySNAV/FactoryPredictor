@@ -1,6 +1,6 @@
 import type { Server as HttpServer } from "node:http";
 import { WebSocketServer } from "ws";
-import { createMessage } from "./services/chatService";
+import { createMessage } from "./services/chatService.js";
 
 export function registerWebSocket(server: HttpServer) {
   const wss = new WebSocketServer({ server, path: "/ws/chat" });

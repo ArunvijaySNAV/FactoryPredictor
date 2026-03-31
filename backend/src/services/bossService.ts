@@ -1,5 +1,5 @@
 import type { BossOverview, Machine } from "@machine-health/shared";
-import { getOperatorOverview } from "./telemetryService";
+import { getOperatorOverview } from "./telemetryService.js";
 
 export function getBossOverview(): BossOverview {
   const operatorOverview = getOperatorOverview();

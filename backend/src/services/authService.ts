@@ -1,8 +1,8 @@
 import bcrypt from "bcryptjs";
 import type { UserRole } from "@machine-health/shared";
-import { insforge } from "../data/insforgeClient";
-import { getDbUserByEmail, upsertAppUser } from "../data/insforgeRepository";
-import { store } from "../data/store";
+import { insforge } from "../data/insforgeClient.js";
+import { getDbUserByEmail, upsertAppUser } from "../data/insforgeRepository.js";
+import { store } from "../data/store.js";
 
 export async function loginWithCredentials(email: string, password: string, selectedRole: UserRole) {
   const hostedAuth = await insforge.auth.signInWithPassword({

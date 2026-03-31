@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getMachineSnapshot } from "../services/telemetryService";
+import { getMachineSnapshot } from "../services/telemetryService.js";
 
 export const machineRoutes = Router();
 
@@ -12,4 +12,3 @@ machineRoutes.get("/:machineId", (request, response) => {
 
   response.json(snapshot);
 });
-

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { getBossOverview } from "../services/bossService";
-import { getOperatorOverview } from "../services/telemetryService";
+import { getBossOverview } from "../services/bossService.js";
+import { getOperatorOverview } from "../services/telemetryService.js";
 
 export const overviewRoutes = Router();
 
@@ -11,4 +11,3 @@ overviewRoutes.get("/operator", (_request, response) => {
 overviewRoutes.get("/boss", (_request, response) => {
   response.json(getBossOverview());
 });
-

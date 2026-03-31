@@ -1,5 +1,5 @@
 import type { Alert, ChatMessage, DailyReport, Machine, TelemetryRecord, User } from "@machine-health/shared";
-import { machines, users } from "./mockData";
+import { machines, users } from "./mockData.js";
 
 class InMemoryStore {
   users: User[] = [...users];

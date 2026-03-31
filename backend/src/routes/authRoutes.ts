@@ -7,7 +7,7 @@ import {
   signUpWithInsforge,
   startOAuthFlow,
   verifyEmailCode
-} from "../services/authService";
+} from "../services/authService.js";
 
 export const authRoutes = Router();
 

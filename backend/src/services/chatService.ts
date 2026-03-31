@@ -1,6 +1,6 @@
 import type { ChatMessage, UserRole } from "@machine-health/shared";
-import { persistMessage } from "../data/insforgeRepository";
-import { store } from "../data/store";
+import { persistMessage } from "../data/insforgeRepository.js";
+import { store } from "../data/store.js";
 
 export function getMessages() {
   return [...store.messages].sort((left, right) => left.timestamp.localeCompare(right.timestamp));

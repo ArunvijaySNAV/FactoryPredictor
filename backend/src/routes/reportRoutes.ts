@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createDailyReportPdf, generateDailyReport } from "../services/reportService";
+import { createDailyReportPdf, generateDailyReport } from "../services/reportService.js";
 
 export const reportRoutes = Router();
 

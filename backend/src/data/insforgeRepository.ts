@@ -1,6 +1,6 @@
 import type { Alert, ChatMessage, DailyReport, Machine, TelemetryRecord, User } from "@machine-health/shared";
-import { store } from "./store";
-import { insforge } from "./insforgeClient";
+import { store } from "./store.js";
+import { insforge } from "./insforgeClient.js";
 
 type DbUser = {
   id: string;

@@ -1,11 +1,11 @@
 import express from "express";
 import cors from "cors";
-import { authRoutes } from "./routes/authRoutes";
-import { chatRoutes } from "./routes/chatRoutes";
-import { machineRoutes } from "./routes/machineRoutes";
-import { overviewRoutes } from "./routes/overviewRoutes";
-import { reportRoutes } from "./routes/reportRoutes";
-import { telemetryRoutes } from "./routes/telemetryRoutes";
+import { authRoutes } from "./routes/authRoutes.js";
+import { chatRoutes } from "./routes/chatRoutes.js";
+import { machineRoutes } from "./routes/machineRoutes.js";
+import { overviewRoutes } from "./routes/overviewRoutes.js";
+import { reportRoutes } from "./routes/reportRoutes.js";
+import { telemetryRoutes } from "./routes/telemetryRoutes.js";
 
 export function createApp() {
   const app = express();

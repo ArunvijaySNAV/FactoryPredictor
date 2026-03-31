@@ -1,8 +1,8 @@
 import PDFDocument from "pdfkit";
 import type { DailyReport } from "@machine-health/shared";
-import { persistReport } from "../data/insforgeRepository";
-import { store } from "../data/store";
-import { getOperatorOverview } from "./telemetryService";
+import { persistReport } from "../data/insforgeRepository.js";
+import { store } from "../data/store.js";
+import { getOperatorOverview } from "./telemetryService.js";
 
 export async function generateDailyReport(): Promise<DailyReport> {
   const overview = getOperatorOverview();

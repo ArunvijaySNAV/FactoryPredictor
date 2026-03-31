@@ -1,7 +1,7 @@
 import { createServer } from "node:http";
-import { createApp } from "./app";
-import { hydrateStoreFromInsforge } from "./data/insforgeRepository";
-import { registerWebSocket } from "./websocket";
+import { createApp } from "./app.js";
+import { hydrateStoreFromInsforge } from "./data/insforgeRepository.js";
+import { registerWebSocket } from "./websocket.js";
 
 const port = 4001;
 const app = createApp();

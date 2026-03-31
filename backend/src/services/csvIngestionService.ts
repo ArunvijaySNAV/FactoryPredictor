@@ -1,9 +1,9 @@
 import { parse } from "csv-parse/sync";
 import type { Machine, TelemetryRecord, UploadResponse } from "@machine-health/shared";
-import { persistTelemetryImport } from "../data/insforgeRepository";
-import { store } from "../data/store";
-import { buildAlerts } from "./predictionService";
-import { syncMachineStatuses } from "./telemetryService";
+import { persistTelemetryImport } from "../data/insforgeRepository.js";
+import { store } from "../data/store.js";
+import { buildAlerts } from "./predictionService.js";
+import { syncMachineStatuses } from "./telemetryService.js";
 
 type CsvRow = {
   time: string;
@@ -115,7 +115,7 @@ export async function importTelemetryCsv(content: string): Promise<UploadRespons
   });
 
   const machineMap = new Map(store.machines.map((machine) => [machine.id, machine]));
-  const activeMachines: Machine[] = [...machineIds].map((machineId) => {
+  const activeMachines = [...machineIds].map((machineId): Machine => {
     const existing = machineMap.get(machineId);
     if (existing) {
       return existing;

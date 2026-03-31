@@ -1,6 +1,6 @@
 import type { MachineSnapshot, OperatorOverview, TelemetryRecord } from "@machine-health/shared";
-import { store } from "../data/store";
-import { buildAlerts, buildMaintenanceSuggestion, deriveMachineStatus } from "./predictionService";
+import { store } from "../data/store.js";
+import { buildAlerts, buildMaintenanceSuggestion, deriveMachineStatus } from "./predictionService.js";
 
 type AggregatedTelemetryPoint = Pick<
   TelemetryRecord,
