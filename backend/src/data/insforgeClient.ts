@@ -19,17 +19,33 @@ function readLocalProjectConfig(): LocalProjectConfig | null {
   return JSON.parse(readFileSync(projectConfigPath, "utf8")) as LocalProjectConfig;
 }
 
-const localProjectConfig = readLocalProjectConfig();
-const baseUrl = process.env.INSFORGE_OSS_HOST ?? localProjectConfig?.oss_host;
-const anonKey = process.env.INSFORGE_API_KEY ?? localProjectConfig?.api_key;
+let cachedClient: ReturnType<typeof createClient> | null = null;
 
-if (!baseUrl || !anonKey) {
-  throw new Error("InsForge configuration is missing. Set INSFORGE_OSS_HOST and INSFORGE_API_KEY.");
+function getInsforgeClient() {
+  if (cachedClient) {
+    return cachedClient;
+  }
+
+  const localProjectConfig = readLocalProjectConfig();
+  const baseUrl = process.env.INSFORGE_OSS_HOST ?? localProjectConfig?.oss_host;
+  const anonKey = process.env.INSFORGE_API_KEY ?? localProjectConfig?.api_key;
+
+  if (!baseUrl || !anonKey) {
+    throw new Error("InsForge configuration is missing. Set INSFORGE_OSS_HOST and INSFORGE_API_KEY.");
+  }
+
+  cachedClient = createClient({
+    baseUrl,
+    anonKey,
+    isServerMode: true,
+    timeout: 30000
+  });
+
+  return cachedClient;
 }
 
-export const insforge = createClient({
-  baseUrl,
-  anonKey,
-  isServerMode: true,
-  timeout: 30000
+export const insforge = new Proxy({} as ReturnType<typeof createClient>, {
+  get(_target, property, receiver) {
+    return Reflect.get(getInsforgeClient(), property, receiver);
+  }
 });
