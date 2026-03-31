@@ -1,7 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { createApp } from "../backend/src/app.js";
 
-let app: ReturnType<typeof createApp> | null = null;
+type AppHandler = (request: VercelRequest, response: VercelResponse) => unknown;
+
+let appPromise: Promise<AppHandler> | null = null;
 
 export const config = {
   api: {
@@ -9,11 +10,17 @@ export const config = {
   }
 };
 
-export default function handler(request: VercelRequest, response: VercelResponse) {
+async function getApp(): Promise<AppHandler> {
+  if (!appPromise) {
+    appPromise = import("../backend/src/app.js").then(({ createApp }) => createApp() as AppHandler);
+  }
+
+  return appPromise;
+}
+
+export default async function handler(request: VercelRequest, response: VercelResponse) {
   try {
-    if (!app) {
-      app = createApp();
-    }
+    const app = await getApp();
 
     return app(request, response);
   } catch (error) {
